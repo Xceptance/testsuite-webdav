@@ -5,7 +5,7 @@
 This is a load test suite built for XLT. This project focuses on making load testing WebDAV servers possible and gives detailed results for analytic purposes. The test suite is based on XLT by Xceptance Software Technologies GmbH and the Java library Sardine.
 
 ## Prerequisites
-* XLT 4.7.1 (or higher)
+* XLT 4.9.2 (or higher)
 * Java IDE (e.g. Eclipse or IntelliJ)
 * Java / OpenJDK
 * Sardine 5.7 or higher
@@ -59,12 +59,12 @@ The ListResources and GetFile actions are something special, because they keep r
 new GetFile(“http://localhost/webdav/Readme.txt”, false).run();
 With this example you can fire and forget, otherwise use the release methods of these actions as soon as the results are not used anymore.
 
-At instantiating an action, keep in mind to set a ‘/’ at the end of the path string to avoid unsuspected reaktions. Whitespace in a path will be substituted by ASCII corresponding hexadecimal values by taking use of the PathBuilder utility in all predefined actions.
+At instantiating an action, keep in mind to set a ‘/’ at the end of the path string to avoid unsuspected reactions. Whitespace in a path will be substituted by ASCII corresponding hexadecimal values by taking use of the PathBuilder utility in all predefined actions.
 
 To run an action use its run method. After completing the action the results and all used paths can be accessed by their provided methods for following actions. If the test is performed by several users or machines at the same time, it has to focus on directing actions to separated locations to avoid race conditions. Therefore it is helpful to create user specific directories by adding their userID, provided by Session.getCurrent().getUserID() into the directories names and founding a test design on separating. 
 
 CreateDirectory create = new CreateDirectory(“http//localhost/webdav/” + Session.getCurrent().getUserID + “_Home/”).run()
 
-For all following actions you can use this path by create.getUsedRelativePath() insode the constructor.
+For all following actions you can use this path by create.getUsedRelativePath() inside the constructor.
 
 At the creation of an action it is stored inside the context holder as “activeAction” and if there was an action before, this is referenced as “previousAction” of the “activeAction”. All initialising information like host name, webdav directory or credential can be also set by the context, which is user specific. An important thing is to call the “clean” method of the context until the test is finished. In my example test case it is done by the @After annotation which calls WebdavContext.clean(). This releases your “activeAction” to avoid endless chaining along several iterations and resulting memory problems. At least you have to compile your testcase and actions to provide it to the mastercontroller, which executes the load test. If your IDE responds, the mastercontroller could not find the test case, that is the most likely reason, so check “Setup your project” again if you do these steps.

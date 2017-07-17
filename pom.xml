@@ -6,7 +6,7 @@
 
     <groupId>com.xceptance</groupId>
     <artifactId>testsuite-webdav</artifactId>
-    <version>0.0.1</version>
+    <version>1.0.0</version>
 
     <name>testsuite-webdav</name>
     <description>A demo test suite for WebDAV servers.</description>
@@ -30,7 +30,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.5.1</version>
+                <version>3.6.1</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
@@ -39,6 +39,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.0.1</version>
                 <executions>
                     <!-- Automatically copy all non-provided dependencies to "target/dependency" when compiling. This ensures that 
                         they are present when the test suite is about to be uploaded to the agent machines. -->
@@ -70,7 +71,7 @@
                                     <pluginExecutionFilter>
                                         <groupId>org.apache.maven.plugins</groupId>
                                         <artifactId>maven-dependency-plugin</artifactId>
-                                        <versionRange>[2.8,)</versionRange>
+                                        <versionRange>[3.0.0,)</versionRange>
                                         <goals>
                                             <goal>copy-dependencies</goal>
                                         </goals>
@@ -91,8 +92,8 @@
 
     <repositories>
         <repository>
-            <id>xc-nexus</id>
-            <url>https://lab.xceptance.de/nexus/content/groups/public</url>
+            <id>xceptance-releases</id>
+            <url>https://lab.xceptance.de/nexus/content/repositories/releases/</url>
         </repository>
     </repositories>
 
@@ -100,13 +101,13 @@
         <dependency>
             <groupId>com.xceptance</groupId>
             <artifactId>xlt</artifactId>
-            <version>4.7.1</version>
+            <version>4.9.2</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.xceptance</groupId>
             <artifactId>xlt-webdav</artifactId>
-            <version>0.0.1</version>
+            <version>1.0.0</version>
         </dependency>
     </dependencies>
 
